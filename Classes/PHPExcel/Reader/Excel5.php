@@ -6767,10 +6767,12 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 	 * @param int $pos
 	 * @return int
 	 */
-	public static function _GetInt2d($data, $pos)
-	{
-		return ord($data[$pos]) | (ord($data[$pos+1]) << 8);
-	}
+        public static function _GetInt2d($data, $pos, $test = false) {
+            if (!isset($data[$pos]) || !isset($data[$pos+1])) {
+                return 0; // check if the $pos and $pos+1 indexes exists
+            }
+            return ord($data[$pos]) | (ord($data[$pos+1]) << 8);
+        }
 
 
 	/**
